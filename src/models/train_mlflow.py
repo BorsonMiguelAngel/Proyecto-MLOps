@@ -10,7 +10,11 @@ def train_and_log_model(
 ):
     """Entrena un modelo Random Forest y registra hiperparametros, metricas y el artefacto en Mlflow"""
 
-    # 1. Configurar o seleccionar el experimento en Mlflow
+    # 1. SOLUCIÓN AL ERROR DE PERMISOS: Forzar MLflow a usar una ruta local relativa dentro del proyecto
+    mlruns_path = pathlib.Path("mlruns").resolve()
+    mlflow.set_tracking_uri(f"file://{mlruns_path}")
+    
+    # 2. Configurar o seleccionar el experimento en Mlflow
     mlflow.set_experiment("SP500_Market_Prediction")
 
     print(f"Cargando dataset procesado desde '{data_path}'...")
