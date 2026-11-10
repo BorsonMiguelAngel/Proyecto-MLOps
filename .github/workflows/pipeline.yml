@@ -45,6 +45,8 @@ jobs:
 
         # Paso F: Fase 3 - Entrenamiento y Experiment Tracking con MLflow
         - name: Entrenamiento del modelo y Registro en MLflow
+          env:
+            MLFLOW_ALLOW_FILE_STORE: "true"
           run: |
             python src/models/train_mlflow.py
 
